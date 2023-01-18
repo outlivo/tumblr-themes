@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{MobileAppHeaders}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bᴀsᴇ Cᴏᴅᴇ
+Fʀᴏᴍ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ
+
+. Usᴇ ᴀs ᴀ ʙᴀsᴇ ᴄᴏᴅᴇ 
+. Eᴅɪᴛ ᴛᴏ ʏᴏᴜʀ ʟɪᴋɪɴɢ 
+. Fᴇᴇʟ ғʀᴇᴇ ᴛᴏ ʀᴇᴅɪsᴛɪʙᴜᴛᴇ
+. Gɪᴠᴇ ᴀ sᴛᴀʀ ᴏɴ ᴛʜᴇ ʀᴇᴘᴏsɪᴛᴏʀʏ
+ 
+------------------------------------>
+
+<title>{Title}</title>
+<meta name="description" content="{MetaDescription}">
+
+<!-- selectors -->
+<meta name="if:Tumblr Controls" content="0">
+<meta name="if:Lazy Image Loading" content="0">
+<meta name="if:Search" content="0">
+<meta name="if:Disqus Shortname" content="0">
+
+<!-- layout -->
+<meta name="select:Layout" content="list" title="List">
+<meta name="select:Layout" content="grid" title="Grid">
+    
+<meta name="color:BackgroundColor" content="#ffffff">
+<meta name="color:TextColor" content="#000000">
+<meta name="color:AccentColor" content="#888888">
+<meta name="color:PostBackgroundColor" content="#eeeeee">
+<meta name="color:PostTextColor" content="#888888">
+<meta name="color:BorderColor" content="#888888">
+<meta name="text:BorderRadius" content="1.5em">
+
+<meta name="text:Disqus Shortname" content="">
+
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type=application/rss+xml href={RSS}>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style type="text/css">
+    :root{
+        --bg: {color:BackgroundColor};
+        --text: {color:TextColor};
+        --accent: {color:AccentColor};
+        --card-bg: {color:PostBackgroundColor};
+        --card-text: {color:PostTextColor};
+        --border: {color:BorderColor};
+        --border-radius: {text:BorderRadius};
+    }
+{block:IfTumblrControls}
+.tmblr-iframe--unified-controls{opacity: 0.5;}
+{/block:IfTumblrControls}
+{block:IfNotTumblrControls}
+.tmblr-iframe--unified-controls{display: none!important;}
+{/block:IfNotTumblrControls}
+.tmblr-iframe--follow-teaser{display: none!important;}
+.tmblr-iframe--app-cta-button{display: none!important;}
+.tmblr-lightbox, #tumblr_lightbox {background-color: rgba(var(--foreground),0.5)!important;}
+.lightbox-image, #tumblr_lightbox img {
+    box-shadow: none!important;
+    border-radius: 0.2em;
+    max-width: none;
+}
+{block:IndexPage}
+.list {max-width: 728px;}
+@media screen and (min-width:728px){.grid .post {width: 45%; margin: 2.5%;}}
+@media screen and (min-width:1336px){.grid .post {width: 28.33%;}}
+.card:hover img{transform: scale(1.2); transition: transform 1s ease;}
+ panorama img:not(:first-child), .photoset img:not(:first-child), .post-content img:not(:first-child), .post-content p:not(.npf_quote), .post-content h1, .post-question p:not(:first-child), .post-answer p:not(:first-child){display: none;}
+{/block:IndexPage}
+{block:PermalinkPage}
+.post {position: relative!important;}
+.card-content{padding: 2.5% auto;}
+{/block:PermalinkPage}
+
+{CustomCSS}
+</style>
+</head>
+
+<body class="{block:PermalinkPage} permalink-page{/block:PermalinkPage}{block:IndexPage} index-page{/block:IndexPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{block:NoPosts} no-posts{/block:NoPosts}{/block:SearchPage}{block:ShowAdsOnThisPage} show-ads{/block:ShowAdsOnThisPage}">
+
+<!-- In case the search engine skips the title tag-->
+<h1 style="display: none;">{Title}{block:TagPage}({lang:Posts tagged Tag}){/block:TagPage}{block:SearchPage}({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</h1>
+
+<!-- header section -->
+<div class="header">
+    <div class="Avatar"></div>
+    <div class="Description"></div>
+</div>
+
+<!-- main section -->
+<div class="main">
+    
+    <!----- search page ----->
+    {block:SearchPage}
+        <!----- no search result -----> 
+        {block:NoSearchResults}
+        <p>No results found for "{SearchQuery}"</p>
+        {/block:NoSearchResults}
+        <!----- search result ----->
+        {block:SearchResults}
+        <h3>{SearchQuery}</h3>
+        <p>{SearchResultCount} results found. You can check them out now!</p>
+        {/block:SearchResults}
+    {/block:SearchPage}
+
+    <!----- tag page ----->
+    {block:TagPage}
+        <h3>{Tag}</h3>
+        <p>Posts tagged "{Tag}" are below!</p>
+    {/block:TagPage}
+
+    <!----- no posts -----> 
+    {block:NoPosts}
+    <p>Mo posts yet.</p>
+    {/block:NoPosts}
+
+
+    <div class="{select:Layout} posts">
+        {block:Posts}
+            <article id="{PostID}" class="{PostType} post">
+                {block:Date}
+                <div class="card-header">
+                    <p>Posted on <span class="date">{Timestamp}</span></p>
+                    <p>•</p>
+                    <span class="post-type"></span>
+                </div>
+                {/block:Date}
+                <!-- posts -->
+
+                <div class="card-content">
+                <!----- text ----->
+                    {block:Text}
+                        {block:Title}
+                            {Title}
+                        {/block:Title}
+                        {Body}
+                    {/block:Text}
+
+                    <!----- photo ----->     
+                    {block:Photo}
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}">
+                    {/block:Photo}
+
+                    <!----- panorama ----->     
+                    {block:Panorama}
+                        {LinkOpenTag}
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                    {/block:Panorama}
+
+                    <!----- photoset ----->     
+                    {block:Photoset}
+                        {block:Photos}
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}">
+                        {/block:Photos}
+                    {/block:Photoset}
+
+                    <!----- quote ----->            
+                    {block:Quote}
+                        {Quote}
+                        {block:Source}
+                            {Source}
+                        {/block:Source}
+                    {/block:Quote}
+
+                       <!----- link ----->            
+                    {block:Link}
+                        {block:Thumbnail}
+                            <img src="{Thumbnail-500}" alt="PhotoAlt">
+                        {/block:Thumbnail}
+                        {Name}
+                        {block:Excerpt}
+                            {Excerpt}
+                        {/block:Excerpt}
+                        {block:Host}
+                            {Host}
+                        {/block:Host}
+                    {/block:Link}
+
+                    <!----- chat ----->            
+                    {block:Chat}
+                        {block:Title}
+                            {Title}
+                        {/block:Title}
+                        {block:Lines}
+                            {block:Label}{Label}{/block:Label}
+                            {Line}
+                        {/block:Lines}
+                    {/block:Chat}
+
+                    <!----- video ----->     
+                    {block:Video}
+                        {VideoEmbed-500}
+                    {/block:Video}            
+
+                    <!----- audio ----->     
+                    {block:audio}
+                        {AudioEmbed}
+                    {/block:audio}
+
+                    <!----- answer posts ----->     
+                    {block:Answer}
+                        <img src="{askerportraiturl-30}">
+                        {Question}
+                        {block:Answerer}
+                            {Answer}
+                            <img src="{answererportraiturl-30}">
+                        {/block:Answerer}
+                        {Replies}
+                    {/block:Answer}
+                    </div>
+                
+                {block:NoteCount}
+                <div class="card-footer">
+                    <div class="date">{NoteCount}</div>
+                    <div class="card-meta">
+                        <span class="like-btn">
+                            {LikeButton}
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </span>
+                        <a class="reblog-btn" href="{ReblogURL}">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                {/block:NoteCount}
+                <div class="container-col">
+                    {block:HasTags}
+                        <ul class="card-tags">
+                        {block:Tags}
+                            <li class="tag">
+                                <a href="{TagURL}">{Tag}</a>
+                            </li>
+                        {/block:Tags}
+                        </ul>
+                    {/block:HasTags}
+                </div>
+                </article>
+            {/block:Posts}
+        </div>
+
+    <!----- pagination section -----> 
+    {block:Pagination}
+    <section class="pagination">
+        {block:PreviousPage}
+        <a href="{PreviousPage}">
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        {/block:PreviousPage}
+        <span><sup>{CurrentPage}</sup> / <sub>{TotalPages}</sub></span>
+        {block:NextPage}
+        <a href="{NextPage}">
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        {/block:NextPage}
+    </section>
+    {/block:Pagination}
+</div>
+    
+<!-- credits -->
+<div class="footer">This Template is created by <a href="https://outlivo.tumblr.com"><b>Outlivo.</b></a></div>
+
+</body>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
