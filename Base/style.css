@@ -228,7 +228,7 @@ template {
 }
 .description{
     display: flex;
-    font-size: 1em;
+    font-size: 1.25em;
     max-width: 364px;
 }
 .main {
