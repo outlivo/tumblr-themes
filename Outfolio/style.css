@@ -373,7 +373,7 @@ template {
   margin: 0 auto;
   width: 100%;
 }
-.list{
+.regular{
     display: block;
     max-width: 728px;
 }
