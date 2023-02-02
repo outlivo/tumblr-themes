@@ -72,6 +72,7 @@ sup {
 }
 img {
   display: block;
+  margin: 0 auto;
   border-style: none;
   max-height: 100%;
   max-width: 100%;
@@ -245,12 +246,15 @@ template {
   overflow: hidden;
 }
 .card-content {
-  margin: 0;
+  margin: 0 auto;
   margin-bottom: auto;
-  padding: 2.5% auto;
+  padding: 2.5% 0;
 }
 iframe{
     width: 100%;
+}
+figure.tmblr-full:only-child{
+    justify-content: center;
 }
 .like-btn, .reblog-btn{
   margin: 0 0.5em;
