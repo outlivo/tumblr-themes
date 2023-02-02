@@ -13,12 +13,15 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
   font-size: 1em;
+  font-family: var(--font);
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 1.5;
@@ -147,7 +150,7 @@ legend {
   display: table;
   max-width: 100%;
   padding: 0;
-  white-space: normal;
+  var(--bg)-space: normal;
 }
 textarea {
   overflow: auto;
@@ -221,7 +224,7 @@ template {
     text-transform: uppercase;
 }
 .title span{
-    color: orangered;
+    color: var(--accent);
 }
 .description{
     display: flex;
@@ -265,7 +268,7 @@ iframe{
   transition: all 0.15s ease;
 }
 .like-btn:hover, .reblog-btn:hover{
-  color: orangered;
+  color: var(--accent);
 }
 .like-btn .like_button {
   position: relative;
@@ -280,8 +283,8 @@ iframe{
   z-index: 10;
 }
 .like-btn .liked + svg path {
-  color: orangered;
-  fill: orangered;
+  color: var(--accent);
+  fill: var(--accent);
 }
 .pagination {
   margin: 1em;
@@ -289,6 +292,7 @@ iframe{
 }
 .prev, .next{
   display: flex;
+  margin: 0 1em;
   color: var(--accent);
 }
 .footer, .credits{
@@ -297,8 +301,8 @@ iframe{
     width: 100%;
 }
 .footer{
-    background-color: orangered;
-    color: white;
+    background-color: var(--accent);
+    color: var(--bg);
     font-size: 1em;
     font-weight: 500;
 }
