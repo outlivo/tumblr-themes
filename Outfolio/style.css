@@ -324,7 +324,7 @@ template {
     transition: 0.15s;
 }
 .search:focus{
-    width: 6em;
+    width: auto;
 }
 .search-btn{
     position: relative;
