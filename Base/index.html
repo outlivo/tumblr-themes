@@ -38,8 +38,8 @@
     <!-- header section -->
         <div class="header container-col">
             <a class="avatar" href="/">
-                <img class="avatar-{AvatarShape}" src="{PortraitURL-128}" alt="{Title}"><span>.</span></a>
-            <p class="title"><a href="/">{Title}</a></p>
+                <img class="avatar-{AvatarShape}" src="{PortraitURL-128}" alt="{Title}"></a>
+            <a class="title" href="/">{Title}<span>.</span></a>
             <p class="description">{Description}</p>
         </div>
         
@@ -161,12 +161,12 @@
 
                             <!----- answer posts ----->     
                             {block:Answer}
-                            <div class="column-row">
+                            <div class="container-row">
                                 <img src="{askerportraiturl-64}"/> {Asker}
                             </div>
                                 {Question}
                             {block:Answerer}
-                            <div class="column-row">
+                            <div class="container-row">
                                 <img src="{answererportraiturl-64}"/> {Answerer}
                             </div>
                                 {Answer}
@@ -211,8 +211,7 @@
 
                             </div>
 
-                        {block:NoteCount}
-                            {NoteCount}
+                        {block:Date}
 
                             <div class="container-row">
                                 <a class="like-btn" href="#" title="Like this!">
@@ -223,7 +222,7 @@
                                     <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
                                 </a>
                         </div>
-                        {/block:NoteCount}
+                        {/block:Date}
 
                         {block:PostNotes}
                         {PostNotes}
