@@ -21,25 +21,19 @@ Bʏ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ
 <meta name="description" content="{MetaDescription}">
 
 <!-- selectors -->
-<meta name="if:Tumblr Controls Off" content="1">
-<meta name="if:Lazy Image Loading" content="0">
-<meta name="if:Search" content="1">
-<meta name="if:Disqus Shortname" content="1">
-
-<!-- layout -->
-<meta name="select:Layout" content="list" title="List">
+<meta name="if:Tumblr Controls Off" content="0">
+<meta name="if:Lazy Image Loading" content="1">
+<meta name="select:Layout" content="regular" title="List">
 <meta name="select:Layout" content="grid" title="Grid">
 <meta name="select:Portfolio Style" content="full" title="Photo + Text">
 <meta name="select:Portfolio Style" content="photo-only" title="Photo Only">
-
 <meta name="text:Font Size" content="12px">
 <meta name="color:Border Color" content="#ff4141">
 <meta name="text:Border Size" content="0.1em">
 <meta name="text:Border Radius" content="1.5em">
-
 <meta name="if:Link1" content="0">
 <meta name="if:Link2" content="0">
-<meta name="if:Search" content="0">
+<meta name="if:Search" content="1">
 <meta name="text:Link1 URL" content="https://">
 <meta name="text:Link2" content="">
 <meta name="text:Link2 URL" content="https://">
@@ -76,7 +70,7 @@ Bʏ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ
     max-width: none;
 }
 {block:IndexPage}
-    .post-content img:not(:first-child), .post-content div.npf_row+div.npf_row{display: none;}
+    .post-content img:not(:first-child), body div.npf_row+div.npf_row{display: none;!important}
     .photo-only .post-content p{display: none;}
     .full .post-content p{display: block;}
 {/block:IndexPage}
@@ -98,9 +92,9 @@ Bʏ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ
 
 <!-- header section -->
 <div class="header container-col">
+    <a class="title" href="/">{Title}<span>.</span></a>
     <a class="avatar" href="/">
         <img class="avatar-{AvatarShape}" src="{PortraitURL-128}" alt="{Title}"></a>
-    <a class="title" href="/">{Title}<span>.</span></a>
     <p class="description">{Description}</p>
 </div>
 <div class="nav-wrapper">
