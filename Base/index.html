@@ -1,260 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {MobileAppHeaders}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{MobileAppHeaders}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bᴀsᴇ Cᴏᴅᴇ
-    Bʏ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ 
+<!-- Oᴜᴛғᴏʟɪᴏ
+Bʏ Oᴜᴛʟɪᴠᴏ | ᴏᴜᴛʟɪᴠᴏ.ᴛᴜᴍʙʟʀ.ᴄᴏᴍ 
 
-    . Tʜɪs ɪs ᴀ ʙᴀsᴇ ᴄᴏᴅᴇ
-    . Usᴇ ғᴏʀ ᴘᴇʀsᴏɴᴀʟ/ᴄᴏᴍᴍᴇʀᴄɪᴀʟ ᴜsᴇ
-    . Tʜɪs ᴍᴀʏ ʙᴇ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ ᴛʜᴇ ғᴜᴛᴜʀᴇ
-    . Sᴛᴀʀ ᴛʜɪs ʀᴇᴘᴏsɪᴛᴏʀʏ ғᴏʀ ᴜsᴇ
-    . Rᴇᴍᴏᴠᴇ ᴛʜᴇ ᴄʀᴇᴅɪᴛ ɪғ ʏᴏᴜ ᴡᴀɴᴛ
+. Dᴏ ɴᴏᴛ ʀᴇᴅɪsᴛɪʙᴜᴛᴇ
+. Dᴏ ɴᴏᴛ ʀᴇᴍᴏᴠᴇ ᴄʀᴇᴅɪᴛ
+. Dᴏ ɴᴏᴛ ᴄʟᴀɪᴍ ᴀs ʏᴏᴜʀ ᴏᴡɴ
+. Dᴏ ɴᴏᴛ ᴜsᴇ ᴀs ᴀ ʙᴀsᴇ ᴄᴏᴅᴇ
+. Eᴅɪᴛ ᴍɪɴᴏʀ ᴛʜɪɴɢs ᴛᴏ ʏᴏᴜʀ ʟɪᴋɪɴɢ
 
-    ------------------------------------>
+------------------------------------>
 
-    <title>{Title}</title>
-    <meta name="description" content="{MetaDescription}">
+<title>{Title}</title>
+<meta name="description" content="{MetaDescription}">
 
-    <link rel="shortcut icon" href="{Favicon}">
-    <link rel="alternate" type=application/rss+xml href={RSS}>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/outlivo/tumblr_themes@master/Base/style.css">
+<!-- selectors -->
+<meta name="if:Tumblr Controls Off" content="1">
+<meta name="if:Lazy Image Loading" content="0">
+<meta name="if:Search" content="1">
+<meta name="if:Disqus Shortname" content="1">
 
-    <style type="text/css">
+<!-- layout -->
+<meta name="select:Layout" content="list" title="List">
+<meta name="select:Layout" content="grid" title="Grid">
+<meta name="select:Portfolio Style" content="full" title="Photo + Text">
+<meta name="select:Portfolio Style" content="photo-only" title="Photo Only">
+
+<meta name="text:Font Size" content="12px">
+<meta name="color:Border Color" content="#ff4141">
+<meta name="text:Border Size" content="0.1em">
+<meta name="text:Border Radius" content="1.5em">
+
+<meta name="if:Link1" content="0">
+<meta name="if:Link2" content="0">
+<meta name="if:Search" content="0">
+<meta name="text:Link1 URL" content="https://">
+<meta name="text:Link2" content="">
+<meta name="text:Link2 URL" content="https://">
+<meta name="text:Email" content="">
+<meta name="text:Email URL" content="mailto:">
+<meta name="text:Disqus Shortname" content="">
+
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type=application/rss+xml href={RSS}>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/outlivo/tumblr_themes@master/Outfolio/style.css">
+
+<style type="text/css">
     :root{
-        --font : {TitleFont};
         --bg: {BackgroundColor};
-        --color: {TitleColor};
+        --text: {TitleColor};
         --accent: {AccentColor};
+        --font: {TitleFont};
+        --font-size: {text:Font Size};
+        --border: {color:Border Color};
+        --border-size: {text:Border Size};
+        --border-radius: {text:Border Radius};
     }
-    {CustomCSS}
-    </style>
+.tmblr-iframe.iframe-controls--desktop{opacity:0.8;position:fixed!important; top: 0.25em;right:-2.5em!important;transform:scale(0.8);z-index: 200;}
+.tmblr-iframe.iframe-controls--phone-mobile{background: var(--text)!important; transform:scale(1);}
+{block:IfTumblrControlsOff}
+.tmblr-iframe--unified-controls{display: none!important;}
+{/block:IfTumblrControlsOff}
+.tmblr-iframe--follow-teaser{display: none!important;}
+.tmblr-iframe--app-cta-button{display: none!important;}
+.tmblr-lightbox, #tumblr_lightbox {background-color: var(--bg)!important;}
+.lightbox-image, #tumblr_lightbox img {
+    box-shadow: none!important;
+    border-radius: 0.2em;
+    max-width: none;
+}
+{block:IndexPage}
+    .post-content img:not(:first-child), .post-content div.npf_row+div.npf_row{display: none;}
+    .photo-only .post-content p{display: none;}
+    .full .post-content p{display: block;}
+{/block:IndexPage}
+{block:PermalinkPage}
+    .grid .post{
+        width: 95%;
+        max-width: 728px;
+    }
+{/block:PermalinkPage}
+    
+{CustomCSS}
+</style>
 </head>
 
-<body>
-    <div class="page-wrapper container-col">
-    <!-- In case the search engine skips the title tag-->
-    <h1 style="display: none;">{Title}{block:TagPage}({lang:Posts tagged Tag}){/block:TagPage}{block:SearchPage}({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</h1>
+<body class="{block:PermalinkPage} permalink-page{/block:PermalinkPage}{block:IndexPage} index-page{/block:IndexPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{block:NoPosts} no-posts{/block:NoPosts}{/block:SearchPage}{block:ShowAdsOnThisPage} show-ads{/block:ShowAdsOnThisPage}">
+<div class="page-wrapper container-col">
+<!-- In case the search engine skips the title tag-->
+<h1 style="display: none;">{Title}{block:TagPage}({lang:Posts tagged Tag}){/block:TagPage}{block:SearchPage}({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</h1>
 
-    <!-- header section -->
-        <div class="header container-col">
-            <a class="avatar" href="/">
-                <img class="avatar-{AvatarShape}" src="{PortraitURL-128}" alt="{Title}"></a>
-            <a class="title" href="/">{Title}<span>.</span></a>
-            <p class="description">{Description}</p>
-        </div>
-        
-    <!-- main section -->
-        <div class="main container-col">
-
-            <!----- search page ----->
-            {block:SearchPage}
-                <!----- no search result -----> 
-                {block:NoSearchResults}
-                <p>No results found for "{SearchQuery}"</p>
-                {/block:NoSearchResults}
-                <!----- search result ----->
-                {block:SearchResults}
-                <p>{SearchResultCount} results found. You can check them out now!</p>
-                {/block:SearchResults}
-            {/block:SearchPage}
-
-            <!----- tag page ----->
-            {block:TagPage}
-                <p>Posts tagged "{Tag}" are below!</p>
-            {/block:TagPage}
-
-            <!----- no posts -----> 
-            {block:NoPosts}
-            <p>No posts yet.</p>
-            {/block:NoPosts}
-
-
-            <div class="posts">
-                {block:Posts}
-                    <article id="{PostID}" class="post card">
-                        {block:Date}
-                        {block:PinnedPostLabel}
-                        {/block:PinnedPostLabel}
-                        {/block:Date}
-                        <!-- posts -->
-                        <div class="card-content">
-                            {block:Title}
-                            {Title}
-                            {/block:Title}
-
-                            <!----- text ----->
-                            {block:Text}
-                            {block:NotReblog}
-                            {Body}
-                            {/block:NotReblog}
-                            {/block:Text}
-
-                            <!----- photo ----->     
-                            {block:Photo}
-                                <img src="{PhotoURL-500}" alt="{PhotoAlt}">
-                            {/block:Photo}
-
-                            <!----- panorama ----->     
-                            {block:Panorama}
-                                {LinkOpenTag}
-                                <img src="{PhotoURL-500}" alt="{PhotoAlt}">
-                                {LinkCloseTag}
-                            {/block:Panorama}
-
-                            <!----- photoset ----->     
-                            {block:Photoset}
-                                {block:Photos}
-                                <img src="{PhotoURL-500}" alt="{PhotoAlt}">
-                                {/block:Photos}
-                            {/block:Photoset}
-
-                            <!----- quote ----->            
-                            {block:Quote}
-                                {Quote}
-                                {block:NotReblog}
-                                    {block:Source}
-                                    {Source}
-                                    {/block:Source}
-                                {/block:NotReblog}
-                            {/block:Quote}
-
-                               <!----- link ----->            
-                            {block:Link}
-                            <a href="{URL}">
-                                {block:Thumbnail}
-                                    <img src="{Thumbnail-500}" alt="PhotoAlt">
-                                {/block:Thumbnail}
-                                {Name}
-                                {block:Excerpt}
-                                    {Excerpt}
-                                {/block:Excerpt}
-                                {block:Host}
-                                    {Host}
-                                {/block:Host}
-                            </a>
-                            {block:NotReblog}
-                                {block:Description}
-                                {Description}
-                                {/block:Description}
-                            {/block:NotReblog}
-                            {/block:Link}
-
-                            <!----- chat ----->            
-                            {block:Chat}
-                                {block:Lines}
-                                    {block:Label}
-                                    {Label}
-                                    {/block:Label}
-                                    {Line}
-                                {/block:Lines}
-                            {/block:Chat}
-
-                            <!----- video ----->     
-                            {block:Video}
-                                {VideoEmbed-700}
-                            {/block:Video}            
-
-                            <!----- audio ----->     
-                            {block:audio}
-                                {AudioEmbed}
-                            {/block:audio}
-
-                            <!----- answer posts ----->     
-                            {block:Answer}
-                            <div class="container-row">
-                                <img src="{askerportraiturl-64}"/> {Asker}
-                            </div>
-                                {Question}
-                            {block:Answerer}
-                            <div class="container-row">
-                                <img src="{answererportraiturl-64}"/> {Answerer}
-                            </div>
-                                {Answer}
-                            {/block:Answerer}
-                            {block:NotReblog}
-                            {Replies}
-                            {/block:NotReblog}
-
-                            {/block:Answer}
-
-                            <!-- captions -->
-
-                            {block:PermalinkPage}
-                            {block:NotReblog}
-                                {block:Caption}
-                                {Caption}
-                                {block:Caption}
-                                {block:Source}
-                                Source:<a href="{Permalink}">{Name}</a>
-                                {/block:Source}
-                            {/block:NotReblog}
-                            {/block:PermalinkPage}
-
-                            {block:RebloggedFrom}
-                            {block:Reblogs}
-                                {block:isNotOriginalEntry}
-                                <a class="container-row" href="{Permalink}">
-                                    <img src="{PortraitURL-64}" /> <span  {block:IsDeactivated}deactivated{/block:IsDeactivated}>{Username}</span>
-                                </a>
-                                {/block:isNotOriginalEntry}
-                                {block:PermalinkPage}
-                                    {block:Caption}
-                                    {Caption}
-                                    {block:Caption}
-                                {/block:PermalinkPage}
-                                {Body}
-                            {/block:Reblogs}
-                            {block:PermalinkPage}
-                            Via:<a href="{ReblogParentURL}">{ReblogParentName}</a>
-                            {/block:PermalinkPage}
-                            {/block:RebloggedFrom}
-
-                            </div>
-
-                        {block:Date}
-
-                            <div class="container-row">
-                                <a class="like-btn" href="#" title="Like this!">
-                                    {LikeButton}
-                                    <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                </a>
-                                <a class="reblog-btn" href="{ReblogURL}" title="Reblog">
-                                    <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-                                </a>
-                        </div>
-                        {/block:Date}
-
-                        {block:PostNotes}
-                        {PostNotes}
-                        {/block:PostNotes}
-                        </article>
-                    {/block:Posts}
-                </div>
-
-            <!----- pagination section -----> 
-            {block:Pagination}
-            <section class="pagination container-row">
-                {block:PreviousPage}
-                <a class="prev" href="{PreviousPage}">Prev</a>
-                {/block:PreviousPage}
-                {CurrentPage} / {TotalPages}
-                {block:NextPage}
-                <a class="next" href="{NextPage}">Next</a>
-                {/block:NextPage}
-            </section>
-            {/block:Pagination}
-        </div>
-
-        <!-- credits -->
-        <div class="credits">This Theme is created by <a href="https://outlivo.tumblr.com"><b>Outlivo.</b></a></div>
-
-        <div class="footer">{Title} © {CopyrightYears}</div>
+<!-- header section -->
+<div class="header container-col">
+    <a class="avatar" href="/">
+        <img class="avatar-{AvatarShape}" src="{PortraitURL-128}" alt="{Title}"></a>
+    <a class="title" href="/">{Title}<span>.</span></a>
+    <p class="description">{Description}</p>
+</div>
+<div class="nav-wrapper">
+    <div class="nav container-row">
+        <a class="item-nav" href="/" title="Home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span class="nav-title">Home</span></a>
+        <a class="item-nav" href="/archive" title="Archive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg><span class="nav-title">Archive</span></a>
+        {block:ifLink1}
+        <a class="item-nav" href="{Link1 URL}" title="{Link1}"><span class="nav-title">{Link1}</span></a>
+        {/block:ifLink1}
+        {block:ifLink2}
+        <a class="item-nav" href="{Link2 URL}" title="{Link2}"><span class="nav-title">{Link2}</span></a>
+        {/block:ifLink2}
+        <a class="item-nav" href="/contact" title="Contact"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class="nav-title">Contact</span></a>
+        <span class="item-nav" title="Search">
+            {block:IfSearch}
+            <form class="search-wrapper container-row" action="/search" method="get" autocomplete="off">
+                <input class="search" id="searchq" type="text" name="q" placeholder="SEARCH..."/>
+                <label class="search-btn" for="searchq"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></label>
+            </form>
+        {/block:IfSearch}
+        </span>
     </div>
+    <div class="line-divider"></div>
+</div>
+
+<!-- main section -->
+<div class="main">
+    
+    <!----- search page ----->
+    {block:SearchPage}
+        <!----- no search result -----> 
+        {block:NoSearchResults}
+        <p>No results found for "{SearchQuery}"</p>
+        {/block:NoSearchResults}
+        <!----- search result ----->
+        {block:SearchResults}
+        <h3>Blog</h3>
+        <p>{SearchResultCount} results found. You can check them out now!</p>
+        {/block:SearchResults}
+    {/block:SearchPage}
+
+    <!----- tag page ----->
+    {block:TagPage}
+        <h3>Blog</h3>
+        <p>Posts tagged "{Tag}" are below!</p>
+    {/block:TagPage}
+
+    <!----- no posts -----> 
+    {block:NoPosts}
+    <p>No posts yet.</p>
+    {/block:NoPosts}
+
+
+    <div class="{select:Layout} posts">
+        {block:Posts}
+            <article id="{PostID}" class="{PostType} {select:Portfolio Style} post card">
+                {block:Date}
+                {block:PinnedPostLabel}
+                <div class="card-header">
+                    <span class="line-divider"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    <span class="line-divider"></span>
+                </div>
+                {/block:PinnedPostLabel}
+                {/block:Date}
+                <!-- posts -->
+                <div class="card-content">
+                    <!----- title ----->
+                    {block:Title}
+                    <h1 class="post-title">{Title}</h1>
+                    {/block:Title}
+                    
+                    <!----- text ----->
+                    {block:Text}
+                    {block:NotReblog}
+                    <div class="post-content container-col">{Body}</div>
+                    {/block:NotReblog}
+                    {/block:Text}
+
+                    <!----- photo ----->     
+                    {block:Photo}
+                    <div class="post-content photo">
+                        <img src="{PhotoURL-500}" {block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{PhotoAlt}">
+                    </div>
+                    {/block:Photo}
+
+                    <!----- panorama ----->     
+                    {block:Panorama}
+                    <div class="post-content panorama">
+                        {LinkOpenTag}
+                        <img src="{PhotoURL-500}" {block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                    </div>
+                    {/block:Panorama}
+
+                    <!----- photoset ----->     
+                    {block:Photoset}
+                    <div class="post-content photoset">
+                        {block:Photos}
+                        <img src="{PhotoURL-500}" {block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{PhotoAlt}">
+                        {/block:Photos}
+                    </div>
+                    {/block:Photoset}
+
+                    <!----- quote ----->            
+                    {block:Quote}
+                    <div class="quote container-col">
+                        {Quote}
+                        {block:NotReblog}
+                            {block:Source}
+                            <div class="source">{Source}</div>
+                            {/block:Source}
+                        {/block:NotReblog}
+                    </div>
+                    {/block:Quote}
+
+                       <!----- link ----->            
+                    {block:Link}
+                    <div class="post-content link">
+                        {block:Thumbnail}
+                            <img src="{Thumbnail-500}" {block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="PhotoAlt">
+                        {/block:Thumbnail}
+                        <a class="container-col" href="{URL}">
+                            {Name}
+                            {block:Excerpt}
+                                {Excerpt}
+                            {/block:Excerpt}
+                            {block:Host}
+                                {Host}
+                            {/block:Host}
+                        </a>
+                    </div>
+                    {block:PermalinkPage}
+                        {block:NotReblog}
+                            {block:Description}
+                            <div class="caption">{Description}</div>{/block:Description}
+                        {/block:NotReblog}
+                    {/block:PermalinkPage}
+                    {/block:Link}
+
+                    <!----- chat ----->            
+                    {block:Chat}
+                    <div class="chat">
+                        {block:Lines}
+                            {block:Label}
+                            <b class="user">{Label}</b>
+                            {/block:Label}
+                            <div class="message">{Line}</div>
+                        {/block:Lines}
+                    </div>
+                    {/block:Chat}
+
+                    <!----- video ----->     
+                    {block:Video}
+                    <div class="post-content video">
+                        {VideoEmbed-500}
+                    </div>
+                    {/block:Video}            
+
+                    <!----- audio ----->     
+                    {block:audio}
+                    <div class="post-content audio">
+                        {AudioEmbed}
+                    </div>
+                    {/block:audio}
+
+                    <!----- answer posts ----->     
+                    {block:Answer}
+                        <div class="ask-message container-col">
+                            <div class="user container-row">
+                                <img src="{askerportraiturl-64}"/> <span>{Asker}</span>
+                            </div>
+                            {Question}
+                        </div>
+                    {block:Answerer}
+                        <div class="answer-message container-col">
+                            <div class="user container-row">
+                                <img src="{answererportraiturl-64}"/>
+                                <span>{Answerer}</span>
+                            </div>
+                            {Answer}
+                        </div>
+                    {/block:Answerer}
+                    {block:NotReblog}
+                    <div class="caption container-col">{Replies}</div>
+                    {/block:NotReblog}
+                    
+                    {block:Submission}
+                    <p>{Source}:<a href="{SubmitterURL}">@{Submitter}</a></p>
+                    {/block:Submission}
+                    
+                    {/block:Answer}
+                    
+                    <!-- captions -->
+                    
+                    {block:PermalinkPage}
+                    {block:NotReblog}
+                        {block:Caption}
+                        <div class="caption">{Caption}</div>
+                        {block:Caption}
+                        {block:Source}
+                        <p>Source:<a href="{Permalink}">{Name}</a></p>
+                        {/block:Source}
+                    {/block:NotReblog}
+                    {/block:PermalinkPage}
+                    
+                    {block:RebloggedFrom}
+                    {block:Reblogs}
+                        {block:isNotOriginalEntry}
+                        <a class="user container-row" href="{Permalink}">
+                            <img src="{PortraitURL-64}" /> <span  {block:IsDeactivated}deactivated{/block:IsDeactivated}>{Username}</span>
+                        </a>
+                        {/block:isNotOriginalEntry}
+                        {block:PermalinkPage}
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {block:Caption}
+                        {/block:PermalinkPage}
+                        <div class="caption container-col">{Body}</div>
+                    {/block:Reblogs}
+                    {block:PermalinkPage}
+                    <p>Via:<a href="{ReblogParentURL}">{ReblogParentName}</a></p>
+                    {/block:PermalinkPage}
+                    {/block:RebloggedFrom}
+                </div>
+                
+                {block:PermalinkPage}
+                {block:HasTags}
+                <ul class="tags container-row">
+                    {block:Tags}
+                    <li class="tag">
+                        <a href="{TagURL}">#{Tag}</a>
+                    </li>
+                    {/block:Tags}
+                </ul>
+                {/block:HasTags}
+                {/block:PermalinkPage}
+                
+                {block:NoteCount}
+                <div class="card-footer">
+                    <a class="container-row" href="{Permalink}" title="">
+                    <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <p class="notecount">{NoteCount}</p></a>
+                    <div class="container-row">
+                        <a class="like-btn" href="#" title="Like this!">
+                            {LikeButton}
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </a>
+                        <a class="reblog-btn" href="{ReblogURL}" title="Reblog">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                        </a>
+                        {block:IndexPage}
+                        <a class="link-btn" href="{Permalink}" title="Read More">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                        {/block:IndexPage}
+                    </div>
+                </div>
+                {/block:NoteCount}
+                
+                <div class="line-divider"></div>
+                
+                {block:PostNotes}
+                <div class="container-col">
+                    <div class="notes">{PostNotes}</div>
+                        <!----- disqus section -----> 
+                        {block:IfDisqusShortname} 
+                            <script>
+                            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                                var disqus_shortname = '{text:Disqus Shortname}'; // Required - Enter shortname in Tumblr Theme Options
+                                var disqus_url = '{Permalink}';     /* * * DON'T EDIT BELOW THIS LINE * * */
+                                (function() {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the comments powered by Disqus.blog comments powered by Disqus</noscript>
+                        {/block:IfDisqusShortname}
+                    </div>
+                {/block:PostNotes}
+                </article>
+            {/block:Posts}
+        </div>
+
+    <!----- pagination section -----> 
+    {block:Pagination}
+    <section class="pagination">
+        {block:PreviousPage}
+        <a class="prev" href="{PreviousPage}">
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        {/block:PreviousPage}
+        <span><sup>{CurrentPage}</sup> / <sub>{TotalPages}</sub></span>
+        {block:NextPage}
+        <a class="next" href="{NextPage}">
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        {/block:NextPage}
+    </section>
+    {/block:Pagination}
+</div>
+
+<!-- credits -->
+<div class="credits">This Theme is created by <a href="https://outlivo.tumblr.com"><b>Outlivo.</b></a></div>
+<div class="footer">{Title} © {CopyrightYears}</div>
+</div>
+
+<span class="scroll-top">
+    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></a>
+</span>
 
 </body>
 </html>
